@@ -22,7 +22,7 @@ supabase = create_client(supabase_url, supabase_key)
 @st.cache_resource
 def load_embedding_model():
     """임베딩 모델 로드 (캐시 사용으로 성능 최적화)"""
-    return SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+    return SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
 
 embedding_model = load_embedding_model()
 
