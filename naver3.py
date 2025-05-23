@@ -91,7 +91,8 @@ def semantic_search(query_text, limit=10, match_threshold=0.5):
         for item in result.data:
             if 'embedding' in item and item['embedding'] is not None:
                 # 코사인 유사도 계산
-                item_embedding = item['embedding']
+                item_embedding = np.array(item['embedding'], dtype = float)
+                query_embedding = np.array(query_embedding, dtype=float)
                 similarity = np.dot(query_embedding, item_embedding) / (
                     np.linalg.norm(query_embedding) * np.linalg.norm(item_embedding)
                 )
