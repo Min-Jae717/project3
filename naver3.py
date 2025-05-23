@@ -105,7 +105,7 @@ def semantic_search(query_text, limit=10, match_threshold=0.5):
                         except json.JSONDecodeError:
                             # eval을 사용 (안전하지 않지만 임시 방편)
                             try:
-                                item_embedding = eval(item_embedding)
+                                item_embedding = float(eval(item_embedding))
                             except:
                                 st.warning(f"임베딩 데이터 변환 실패: {item['id']}")
                                 continue
