@@ -30,7 +30,7 @@ def generate_embedding(text):
     """텍스트에서 임베딩 생성 (무료 모델 사용)"""
     if not text or text.strip() == "":
         # 빈 텍스트인 경우 기본 임베딩 반환
-        return [0.0] * 384  # MiniLM 모델의 차원 수
+        return [0.0] * 1536  # MiniLM 모델의 차원 수
     
     embedding = embedding_model.encode(text)
     return embedding.tolist()
