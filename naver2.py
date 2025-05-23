@@ -31,9 +31,17 @@ def generate_embedding(text):
     if not text or text.strip() == "":
         # 빈 텍스트인 경우 기본 임베딩 반환
         return [0.0] * 1536  # MiniLM 모델의 차원 수
-    
+
     embedding = embedding_model.encode(text)
-    return embedding.tolist()
+    
+    # 1536차원으로 패딩 또는 확장
+    embedding_list = embedding.tolist()
+    
+    # 768차원을 1536차원으로 확장 (0으로 패딩)
+    if len(embedding_list) < 1536:
+        embedding_list.extend([0.0] * (1536 - len(embedding_list)))
+    
+    return embedding_list[:1536]  # 정확히 1536차원만 반환
 
 def clean_html_tags(text):
     """HTML 태그 제거"""
